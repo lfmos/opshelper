@@ -1,35 +1,22 @@
-"""
-OpsHelper AI
-
-Módulo responsável pelo gerenciamento da base de conhecimento.
-
-Este arquivo realiza o carregamento do arquivo JSON contendo
-as informações utilizadas pelo assistente para responder às
-perguntas do usuário.
-"""
+"""Carregamento da base de conhecimento do OpsHelper AI."""
 
 import json
-import os
+from pathlib import Path
 
 
-def carregar_base_conhecimento():
-    """
-    Carrega as informações da base de conhecimento.
-    """
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_KNOWLEDGE_BASE = PROJECT_ROOT / "data" / "knowledge_base.json"
 
-    caminho = os.path.join(
-        "data",
-        "knowledge_base.json"
-    )
 
-    try:
-        with open(caminho, "r", encoding="utf-8") as arquivo:
-            return json.load(arquivo)
+def carregar_base_conhecimento(caminho: Path | str | None = None) -> list[dict]:
+    """Carrega e valida a base de conhecimento JSON."""
 
-    except FileNotFoundError:
-        print("Base de conhecimento não encontrada.")
-        return []
+    caminho_base = Path(caminho) if caminho else DEFAULT_KNOWLEDGE_BASE
 
-    except json.JSONDecodeError:
-        print("Erro ao interpretar a base de conhecimento.")
-        return []
+    with caminho_base.open("r", encoding="utf-8") as arquivo:
+        base = json.load(arquivo)
+
+    if not isinstance(base, list):
+        raise ValueError("A base de conhecimento deve conter uma lista de itens.")
+
+    return base

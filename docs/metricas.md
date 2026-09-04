@@ -1,57 +1,62 @@
-# Avaliação e Métricas - OpsHelper AI
+# Validação e Métricas — OpsHelper AI
 
-## Objetivo da avaliação
+## Estratégia de validação
 
-A avaliação do OpsHelper AI tem como objetivo verificar se o assistente consegue encontrar informações relevantes na base de conhecimento, responder dúvidas relacionadas ao seu domínio e evitar respostas sem fundamento.
+A versão atual possui testes automatizados utilizando `unittest`.
 
----
+Os testes verificam o comportamento do mecanismo de normalização, recuperação de conhecimento e tratamento de consultas fora do escopo.
 
-# Metodologia de teste
+## Casos automatizados
 
-Foram realizados testes simulando situações comuns encontradas em ambientes de infraestrutura e DevOps.
+| Caso | Resultado esperado |
+| --- | --- |
+| `Permissão SSH?` | normalização para `permissao ssh` |
+| `DOCKER` | normalização para `docker` |
+| erro `permission denied` no SSH | categoria SSH |
+| problema de acesso EC2 | categoria AWS |
+| container Docker com pontuação | categoria Docker |
+| usuário sem permissão | categoria Linux |
+| serviço inacessível por porta | categoria Rede |
+| commit não aparece no GitHub | categoria Git |
+| impressora sem tinta | Não identificado |
+| resposta Docker | inclui possível causa |
+| execução fora da raiz do projeto | base continua carregando |
 
-Cada teste avaliou:
+## Execução
 
-* capacidade de identificar o assunto;
-* qualidade da orientação fornecida;
-* indicação de próximos passos;
-* comportamento quando a informação não está disponível.
+    python -m unittest discover -s tests -v
 
----
+A validação também inclui:
 
-# Casos de teste
+    python -m compileall app.py src tests
 
-| Teste | Pergunta realizada                                   | Resultado esperado                                  |
-| ----- | ---------------------------------------------------- | --------------------------------------------------- |
-| 1     | Minha chave SSH apresenta permission denied          | Encontrar orientação relacionada a SSH e permissões |
-| 2     | Não consigo acessar minha instância EC2              | Encontrar possíveis causas de acesso AWS            |
-| 3     | Meu container Docker parou                           | Apresentar comandos de diagnóstico Docker           |
-| 4     | Minha aplicação não responde em uma porta específica | Indicar análise de rede e firewall                  |
-| 5     | Como alterar permissão de arquivos Linux             | Apresentar orientação sobre chmod e permissões      |
-| 6     | Como configurar uma impressora residencial           | Informar que não possui conhecimento suficiente     |
+e:
 
----
+    git diff --check
 
-# Resultado da avaliação
+## Interpretação
 
-Durante os testes realizados, o assistente apresentou respostas adequadas para situações presentes na sua base de conhecimento.
+O objetivo dos testes não é medir inteligência artificial, pois a versão atual não utiliza um modelo de IA.
 
-Quando uma solicitação estava fora do escopo definido, o sistema informou que não possuía informações suficientes, evitando respostas inventadas.
+Eles validam:
 
----
+- consistência;
+- normalização;
+- recuperação determinística;
+- robustez básica;
+- fallback;
+- independência do diretório de execução.
 
-# Melhorias futuras
+## Limitações das métricas
 
-Algumas melhorias planejadas para versões futuras:
+A base atual é pequena e controlada.
 
-* utilização de modelos de linguagem mais avançados;
-* implementação de busca semântica;
-* integração com APIs de Inteligência Artificial;
-* criação de interface web;
-* armazenamento de histórico das conversas.
+Por isso, estes testes não representam:
 
----
+- benchmark de NLP;
+- precisão estatística em dataset amplo;
+- desempenho de LLM;
+- avaliação de RAG;
+- cobertura de troubleshooting de produção.
 
-# Conclusão
-
-Os testes demonstraram que o OpsHelper AI consegue atuar como uma ferramenta inicial de apoio técnico, auxiliando usuários na compreensão de problemas comuns de infraestrutura e direcionando possíveis caminhos de solução.
+Esses tipos de avaliação exigiriam uma versão futura com escopo e dataset maiores.

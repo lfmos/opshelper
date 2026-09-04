@@ -1,137 +1,237 @@
-# 🤖 OpsHelper AI - Assistente Virtual para Infraestrutura e DevOps
+# OpsHelper AI
 
-Assistente virtual desenvolvido em Python para auxiliar estudantes e profissionais iniciantes na resolução de dúvidas relacionadas à infraestrutura, Linux, Docker, AWS, Git, SSH e redes.
+Assistente técnico em Python baseado em conhecimento estruturado para troubleshooting de infraestrutura, Linux, Docker, AWS, Git, redes e VPN.
 
-Projeto desenvolvido como parte do desafio **"Construa Seu Assistente Virtual Com Inteligência Artificial"** da DIO, com foco na organização de conhecimento, engenharia de prompts e desenvolvimento de aplicações em Python.
+O OpsHelper AI foi desenvolvido como um projeto prático para organizar conhecimento técnico e transformar dúvidas comuns de infraestrutura em respostas estruturadas com possível causa, orientação e próximo passo.
 
----
-
-# 📖 Sobre o projeto
-
-O OpsHelper AI foi criado para atuar como um assistente técnico capaz de consultar uma base de conhecimento própria e fornecer orientações sobre problemas comuns encontrados em ambientes de infraestrutura.
-
-O objetivo é oferecer respostas claras, organizadas e confiáveis, auxiliando no diagnóstico inicial de situações recorrentes da área de TI.
+> A versão atual utiliza busca determinística por tokens e palavras-chave. Integrações com IA generativa, embeddings e RAG fazem parte do roadmap e não são apresentadas como funcionalidades já implementadas.
 
 ---
 
-# 🎯 Objetivos
+## Objetivo
 
-- Auxiliar estudantes e profissionais iniciantes;
-- Organizar informações técnicas em uma base de conhecimento;
-- Demonstrar conceitos de Assistentes Virtuais utilizando IA;
-- Evitar respostas inventadas quando não houver informação disponível.
+O projeto busca demonstrar:
 
----
-
-# 🚀 Funcionalidades
-
-- Consulta de uma base de conhecimento em JSON;
-- Busca inteligente por palavras-chave;
-- Respostas organizadas por categoria;
-- Sugestão de próximos passos para resolução de problemas;
-- Tratamento de perguntas fora do escopo do assistente.
+- Python aplicado a troubleshooting;
+- organização de uma base de conhecimento;
+- normalização de texto;
+- matching determinístico;
+- respostas estruturadas;
+- separação entre interface, lógica e dados;
+- testes automatizados;
+- integração contínua;
+- documentação de limitações técnicas.
 
 ---
 
-# 🛠️ Tecnologias utilizadas
+## Como funciona
 
-- Python 3
+    Pergunta do usuário
+            |
+            v
+    Normalização de texto
+            |
+            v
+    Extração de tokens
+            |
+            v
+    Base de conhecimento JSON
+            |
+            v
+    Pontuação de relevância
+            |
+            v
+    Melhor correspondência
+            |
+            v
+    Resposta estruturada
+
+A resposta apresenta:
+
+- categoria;
+- possível causa;
+- orientação;
+- próximo passo.
+
+Quando não existe correspondência suficientemente confiável, o assistente informa que não possui dados suficientes em sua base.
+
+---
+
+## Tecnologias
+
+- Python 3.11+
 - JSON
+- unittest
 - Git
 - GitHub
-- Engenharia de Prompts
+- GitHub Actions
+
+A aplicação não exige bibliotecas externas para execução.
 
 ---
 
-# 📂 Estrutura do projeto
+## Categorias atuais
 
-```text
-opshelper-ai/
+A base contém cenários relacionados a:
 
-├── data/
-│   └── knowledge_base.json
+- SSH;
+- AWS / EC2;
+- Docker;
+- Linux;
+- Redes;
+- Git;
+- VPN.
 
-├── docs/
-│   ├── documentacao.md
-│   ├── metricas.md
-│   ├── pitch.md
-│   └── prompt.md
-
-├── src/
-│   ├── assistant.py
-│   └── knowledge.py
-
-├── app.py
-├── README.md
-├── requirements.txt
-└── LICENSE
-```
+Cada registro pode utilizar palavras-chave adicionais para melhorar a recuperação da informação.
 
 ---
 
-# ▶️ Como executar
+## Exemplo
+
+Pergunta:
+
+    Meu Docker? O container não funciona.
+
+Resposta esperada:
+
+    Categoria: Docker
+
+    Possível causa:
+    O container pode estar parado, apresentar erro na aplicação
+    ou possuir configuração incorreta.
+
+    Orientação:
+    Utilize docker ps -a para verificar o status e docker logs
+    nome_do_container para analisar mensagens de erro.
+
+    Próximo passo:
+    Identificar o erro apresentado nos logs antes de reiniciar o serviço.
+
+---
+
+## Estrutura
+
+    opshelper-ai/
+    ├── app.py
+    ├── data/
+    │   └── knowledge_base.json
+    ├── src/
+    │   ├── assistant.py
+    │   └── knowledge.py
+    ├── tests/
+    │   └── test_assistant.py
+    ├── docs/
+    │   ├── documentacao.md
+    │   ├── metricas.md
+    │   ├── pitch.md
+    │   └── prompt.md
+    ├── .github/
+    │   └── workflows/
+    │       └── ci.yml
+    ├── .gitignore
+    ├── requirements.txt
+    ├── LICENSE
+    └── README.md
+
+---
+
+## Executando localmente
 
 Clone o repositório:
 
-```bash
-git clone <URL_DO_REPOSITORIO>
-```
+    git clone https://github.com/lfmos/opshelper-ai.git
+    cd opshelper-ai
 
-Acesse a pasta do projeto:
+Execute:
 
-```bash
-cd opshelper-ai
-```
+    python app.py
 
-Execute a aplicação:
-
-```bash
-python app.py
-```
+Não é necessário instalar dependências externas para utilizar a versão atual.
 
 ---
 
-# 💬 Exemplo de uso
+## Testes
 
-```text
-Usuário:
-Minha chave SSH apresenta erro de permissão.
+O projeto possui testes automatizados com `unittest`.
 
-OpsHelper AI:
+Execute:
 
-Categoria: SSH
+    python -m unittest discover -s tests -v
 
-Orientação:
-Verifique se a chave privada possui as permissões corretas utilizando chmod 400.
+Os testes validam:
 
-Próximo passo:
-Confirme o usuário utilizado na conexão e valide as regras de acesso da instância.
-```
-
----
-
-# 📈 Melhorias futuras
-
-- Integração com modelos de IA (Gemini ou OpenAI);
-- Interface web;
-- Busca semântica;
-- Expansão da base de conhecimento;
-- Histórico de conversas.
+- remoção de acentos;
+- normalização de caixa;
+- consultas SSH;
+- AWS / EC2;
+- Docker;
+- Linux;
+- Redes;
+- Git;
+- consulta fora do escopo;
+- presença de causa na resposta;
+- carregamento da base independente do diretório atual.
 
 ---
 
-# 📚 Aprendizados
+## Qualidade de código
 
-Durante o desenvolvimento deste projeto foram aplicados conceitos de:
+Para verificar se os módulos compilam corretamente:
 
-- Estruturação de bases de conhecimento;
-- Engenharia de prompts;
-- Organização de projetos Python;
-- Tratamento de dados em JSON;
-- Desenvolvimento de assistentes virtuais.
+    python -m compileall app.py src tests
+
+O workflow do GitHub Actions executa automaticamente os testes e a validação de compilação.
 
 ---
 
-# 👨‍💻 Autor
+## Limitações atuais
 
-Desenvolvido por **Luis Filipe Medeiros** como projeto de estudo e portfólio.
+A versão atual:
+
+- não utiliza LLM em runtime;
+- não utiliza embeddings;
+- não realiza busca vetorial;
+- não consulta serviços externos;
+- depende do conteúdo previamente definido na base de conhecimento;
+- utiliza scoring determinístico para escolher a resposta.
+
+Essas limitações são intencionais e mantêm a implementação simples, auditável e sem dependências externas.
+
+---
+
+## Roadmap
+
+Possíveis evoluções:
+
+- expansão da base de conhecimento;
+- busca semântica;
+- embeddings;
+- integração com LLM;
+- RAG;
+- histórico de conversas;
+- interface web;
+- classificação de confiança;
+- fontes e referências por resposta.
+
+Uma futura versão com IA generativa deverá manter respostas fundamentadas na base de conhecimento e evitar geração de comandos não suportados pelos dados disponíveis.
+
+---
+
+## Segurança
+
+O OpsHelper AI fornece orientações técnicas educacionais.
+
+Comandos devem ser revisados antes de utilização em ambientes reais, principalmente quando envolverem:
+
+- permissões;
+- redes;
+- cloud;
+- containers;
+- acesso remoto;
+- serviços críticos.
+
+---
+
+## Autor
+
+Projeto desenvolvido como parte de um portfólio prático de tecnologia, infraestrutura, automação e cibersegurança.
