@@ -1,10 +1,24 @@
-# Arquivos gerados pelo Python
+# Python
 __pycache__/
 *.py[cod]
 
-# Ambiente virtual (caso seja usado futuramente)
+# Virtual environments
 .venv/
 venv/
 
-# Configurações do VS Code (opcional)
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
 .vscode/
+
+# OS
+.DS_Store
+Thumbs.db

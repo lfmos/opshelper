@@ -2,48 +2,100 @@
   {
     "categoria": "SSH",
     "problema": "Permission denied ao conectar em uma máquina Linux",
-    "causa": "A chave SSH pode estar com permissões incorretas, usuário errado ou configuração de acesso inválida.",
-    "solucao": "Verifique a permissão da chave privada utilizando chmod 400 arquivo.pem. Confirme também se o usuário utilizado na conexão está correto.",
+    "keywords": [
+      "ssh",
+      "permission denied",
+      "chave ssh",
+      "chave pem",
+      "chave privada",
+      "acesso ssh"
+    ],
+    "causa": "A chave SSH pode estar com permissões incorretas, o usuário pode estar errado ou a configuração de acesso pode ser inválida.",
+    "solucao": "Verifique a permissão da chave privada utilizando chmod 400 arquivo.pem e confirme se o usuário utilizado na conexão está correto.",
     "proximo_passo": "Validar usuário, IP da máquina e permissões da chave antes de tentar novamente."
   },
   {
     "categoria": "AWS",
     "problema": "Não consigo acessar uma instância EC2",
-    "causa": "O problema pode estar relacionado a regras de segurança, chave SSH, endereço IP ou serviço SSH parado.",
+    "keywords": [
+      "aws",
+      "ec2",
+      "instancia",
+      "security group",
+      "grupo de seguranca"
+    ],
+    "causa": "O problema pode estar relacionado às regras de segurança, chave SSH, endereço IP ou serviço SSH indisponível.",
     "solucao": "Verifique o Security Group da instância, confirme se a porta 22 está liberada e valide se a chave utilizada pertence à máquina.",
     "proximo_passo": "Testar conectividade com o IP público e revisar as configurações da instância."
   },
   {
     "categoria": "Docker",
     "problema": "Container não está funcionando corretamente",
-    "causa": "O container pode estar parado, com erro na aplicação ou configuração incorreta.",
+    "keywords": [
+      "docker",
+      "container",
+      "docker logs",
+      "docker ps",
+      "container parado"
+    ],
+    "causa": "O container pode estar parado, apresentar erro na aplicação ou possuir configuração incorreta.",
     "solucao": "Utilize docker ps -a para verificar o status e docker logs nome_do_container para analisar mensagens de erro.",
     "proximo_passo": "Identificar o erro apresentado nos logs antes de reiniciar o serviço."
   },
   {
     "categoria": "Linux",
     "problema": "Usuário sem permissão para executar uma ação",
+    "keywords": [
+      "linux",
+      "permissao",
+      "chmod",
+      "chown",
+      "ls -l",
+      "usuario sem permissao"
+    ],
     "causa": "O usuário pode não possuir privilégios suficientes ou o arquivo pode ter permissões restritas.",
-    "solucao": "Verifique permissões utilizando ls -l e altere quando necessário utilizando chmod ou chown.",
+    "solucao": "Verifique as permissões utilizando ls -l e altere-as quando necessário utilizando chmod ou chown.",
     "proximo_passo": "Confirmar se a alteração de permissão segue as boas práticas de segurança."
   },
   {
     "categoria": "Rede",
     "problema": "Serviço não está acessível por uma porta específica",
+    "keywords": [
+      "rede",
+      "porta",
+      "firewall",
+      "conectividade",
+      "tcp",
+      "udp"
+    ],
     "causa": "A porta pode estar bloqueada por firewall, provedor ou configuração de rede.",
-    "solucao": "Verifique regras de firewall, Security Groups e possíveis bloqueios da operadora.",
+    "solucao": "Verifique regras de firewall, Security Groups e possíveis bloqueios de rede.",
     "proximo_passo": "Testar a porta utilizando ferramentas de diagnóstico de rede."
   },
   {
     "categoria": "Git",
     "problema": "Alterações não aparecem no repositório remoto",
-    "causa": "As modificações podem não ter sido commitadas ou enviadas para o GitHub.",
+    "keywords": [
+      "git",
+      "github",
+      "commit",
+      "push",
+      "repositorio remoto"
+    ],
+    "causa": "As modificações podem não ter sido commitadas ou enviadas para o repositório remoto.",
     "solucao": "Verifique os arquivos modificados, realize o commit e execute o push para sincronizar.",
     "proximo_passo": "Confirmar no GitHub se o commit foi enviado corretamente."
   },
   {
     "categoria": "VPN",
     "problema": "Sistema funciona utilizando VPN mas falha sem ela",
+    "keywords": [
+      "vpn",
+      "sem vpn",
+      "com vpn",
+      "roteamento",
+      "bloqueio de rede"
+    ],
     "causa": "Algumas redes ou operadoras podem bloquear determinadas portas ou possuir restrições de roteamento.",
     "solucao": "Compare os testes com e sem VPN e valide se existe bloqueio externo de portas ou serviços.",
     "proximo_passo": "Identificar quais portas ou serviços dependem da VPN para funcionamento."

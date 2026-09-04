@@ -1,116 +1,81 @@
-# Documentação do Agente - OpsHelper AI
+# Documentação — OpsHelper AI
 
-## 1. Identificação do Agente
+## Visão geral
 
-**Nome:** OpsHelper AI
+O OpsHelper AI é um assistente técnico em Python que consulta uma base de conhecimento estruturada para responder dúvidas comuns relacionadas a infraestrutura e operações.
 
-**Categoria:** Assistente Virtual Inteligente para Infraestrutura e Operações de TI.
+A implementação atual utiliza recuperação determinística de informações e não depende de modelos de linguagem.
 
-**Objetivo principal:**
-Auxiliar profissionais e estudantes da área de tecnologia na análise de dúvidas técnicas relacionadas a infraestrutura, oferecendo explicações organizadas, sugestões de diagnóstico e orientações baseadas em uma base de conhecimento própria.
+## Componentes
 
----
+### `app.py`
 
-# 2. Problema que o agente busca resolver
+Responsável pela interface de linha de comando.
 
-Durante atividades de infraestrutura, é comum que profissionais iniciantes encontrem dificuldades para interpretar erros, lembrar comandos ou entender conceitos técnicos.
+O módulo:
 
-Problemas simples como:
+- recebe a pergunta;
+- chama o mecanismo de busca;
+- apresenta categoria;
+- apresenta possível causa;
+- apresenta orientação;
+- apresenta próximo passo.
 
-* falhas de conexão SSH;
-* permissões incorretas em arquivos;
-* erros em containers Docker;
-* dúvidas sobre comandos Linux;
-* conceitos de redes e servidores;
+### `src/assistant.py`
 
-podem gerar perda de tempo durante uma análise.
+Responsável pelo processamento das consultas.
 
-O OpsHelper AI foi criado para funcionar como um apoio rápido, semelhante a uma documentação técnica interativa.
+Implementa:
 
----
+- normalização de caixa;
+- remoção de acentos;
+- remoção de pontuação;
+- tokenização;
+- stopwords;
+- matching por categoria;
+- matching por problema;
+- keywords;
+- pontuação de relevância;
+- fallback para consultas não identificadas.
 
-# 3. Público-alvo
+### `src/knowledge.py`
 
-O assistente foi desenvolvido para:
+Responsável pelo carregamento da base JSON.
 
-* estudantes de tecnologia;
-* profissionais iniciantes em infraestrutura;
-* analistas de suporte técnico;
-* pessoas estudando DevOps e Cloud Computing.
+O caminho é calculado a partir da localização do próprio projeto, evitando dependência do diretório atual do terminal.
 
----
+### `data/knowledge_base.json`
 
-# 4. Como o agente funciona
+Armazena os cenários de troubleshooting.
 
-O funcionamento do OpsHelper AI é dividido em três etapas:
+Cada item contém:
 
-### 1. Entrada do usuário
+- `categoria`;
+- `problema`;
+- `keywords`;
+- `causa`;
+- `solucao`;
+- `proximo_passo`.
 
-O usuário apresenta uma dúvida ou descreve um problema técnico.
+## Fluxo de processamento
 
-Exemplo:
-
-"Minha conexão SSH para uma máquina AWS está dando erro de permissão."
-
----
-
-### 2. Análise da solicitação
-
-O agente identifica o assunto relacionado:
-
-* Linux;
-* Docker;
-* AWS;
-* Redes;
-* Git;
-* Segurança básica.
-
-Depois consulta sua base de conhecimento.
-
----
-
-### 3. Resposta orientativa
-
-O assistente retorna:
-
-* explicação do problema;
-* possível causa;
-* comando ou solução recomendada;
-* próximo passo para investigação.
-
-Caso não encontre uma informação adequada, o agente deve informar que não possui conhecimento suficiente.
-
----
-
-# 5. Regras de comportamento do agente
-
-O OpsHelper AI deve:
-
-* utilizar somente informações disponíveis na base de conhecimento;
-* evitar criar respostas sem fundamento;
-* explicar conceitos técnicos de maneira simples;
-* incentivar boas práticas;
-* sugerir etapas de diagnóstico;
-* indicar quando uma análise mais profunda é necessária.
-
----
-
-# 6. Limitações
-
-O assistente não substitui uma análise profissional completa.
-
-Ele funciona como uma ferramenta de apoio, auxiliando na busca de informações e no aprendizado técnico.
-
-Novos conhecimentos podem ser adicionados continuamente à sua base para melhorar suas respostas.
-
----
-
-# 7. Possíveis evoluções futuras
-
-Algumas melhorias planejadas:
-
-* integração com APIs de Inteligência Artificial;
-* criação de uma interface web;
-* histórico de conversas;
-* integração com documentação técnica;
-* execução de comandos de diagnóstico em ambientes controlados.
+```text
+Usuário
+  |
+  v
+Pergunta
+  |
+  v
+Normalização
+  |
+  v
+Tokens relevantes
+  |
+  v
+Pontuação dos registros
+  |
+  v
+Melhor correspondência
+  |
+  v
+Resposta estruturada
