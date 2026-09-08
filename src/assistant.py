@@ -1,4 +1,4 @@
-"""Lógica de busca determinística do OpsHelper AI."""
+"""Lógica de busca determinística do OpsHelper."""
 
 import re
 import unicodedata

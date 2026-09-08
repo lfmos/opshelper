@@ -4,7 +4,7 @@
 
 ## Objetivo
 
-Orientar uma futura camada de IA generativa do OpsHelper AI para responder dúvidas técnicas utilizando exclusivamente informações recuperadas de fontes autorizadas.
+Orientar uma futura camada de IA generativa do OpsHelper para responder dúvidas técnicas utilizando exclusivamente informações recuperadas de fontes autorizadas.
 
 ## Comportamento esperado
 

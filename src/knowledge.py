@@ -1,4 +1,4 @@
-"""Carregamento da base de conhecimento do OpsHelper AI."""
+"""Carregamento da base de conhecimento do OpsHelper."""
 
 import json
 from pathlib import Path

@@ -26,6 +26,13 @@ class TestNormalizacao(unittest.TestCase):
 
 class TestBuscaResposta(unittest.TestCase):
 
+    def test_identifica_vpn(self):
+       resposta = buscar_resposta(
+        "Sistema funciona com VPN mas falha sem ela"
+
+        )
+       self.assertEqual(resposta["categoria"], "VPN")
+
     def test_identifica_ssh(self):
         resposta = buscar_resposta(
             "Estou recebendo permission denied no SSH"
