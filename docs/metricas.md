@@ -1,4 +1,4 @@
-# Validação e Métricas — OpsHelper AI
+# Validação e Métricas — OpsHelper
 
 ## Estratégia de validação
 

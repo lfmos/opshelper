@@ -1,8 +1,8 @@
-# OpsHelper AI
+# OpsHelper
 
 Assistente técnico em Python baseado em conhecimento estruturado para troubleshooting de infraestrutura, Linux, Docker, AWS, Git, redes e VPN.
 
-O OpsHelper AI foi desenvolvido como um projeto prático para organizar conhecimento técnico e transformar dúvidas comuns de infraestrutura em respostas estruturadas com possível causa, orientação e próximo passo.
+O OpsHelper foi desenvolvido como um projeto prático para organizar conhecimento técnico e transformar dúvidas comuns de infraestrutura em respostas estruturadas com possível causa, orientação e próximo passo.
 
 > A versão atual utiliza busca determinística por tokens e palavras-chave. Integrações com IA generativa, embeddings e RAG fazem parte do roadmap e não são apresentadas como funcionalidades já implementadas.
 
@@ -111,7 +111,7 @@ Resposta esperada:
 
 ## Estrutura
 
-    opshelper-ai/
+    opshelper/
     ├── app.py
     ├── data/
     │   └── knowledge_base.json
@@ -139,8 +139,8 @@ Resposta esperada:
 
 Clone o repositório:
 
-    git clone https://github.com/lfmos/opshelper-ai.git
-    cd opshelper-ai
+    git clone https://github.com/lfmos/opshelper.git
+    cd opshelper
 
 Execute:
 
@@ -219,7 +219,7 @@ Uma futura versão com IA generativa deverá manter respostas fundamentadas na b
 
 ## Segurança
 
-O OpsHelper AI fornece orientações técnicas educacionais.
+O OpsHelper fornece orientações técnicas educacionais.
 
 Comandos devem ser revisados antes de utilização em ambientes reais, principalmente quando envolverem:
 

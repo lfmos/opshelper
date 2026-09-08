@@ -1,8 +1,8 @@
-# Documentação — OpsHelper AI
+# Documentação — OpsHelper
 
 ## Visão geral
 
-O OpsHelper AI é um assistente técnico em Python que consulta uma base de conhecimento estruturada para responder dúvidas comuns relacionadas a infraestrutura e operações.
+O OpsHelper é um assistente técnico em Python que consulta uma base de conhecimento estruturada para responder dúvidas comuns relacionadas a infraestrutura e operações.
 
 A implementação atual utiliza recuperação determinística de informações e não depende de modelos de linguagem.
 

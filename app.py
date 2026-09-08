@@ -1,4 +1,4 @@
-"""Interface de linha de comando do OpsHelper AI."""
+"""Interface de linha de comando do OpsHelper."""
 
 from src.assistant import buscar_resposta
 
@@ -6,7 +6,7 @@ from src.assistant import buscar_resposta
 def exibir_resposta(resposta: dict) -> None:
     """Exibe uma resposta estruturada no terminal."""
 
-    print("\nOpsHelper AI:")
+    print("\nOpsHelper:")
     print(f"Categoria: {resposta['categoria']}")
     print(f"\nPossível causa: {resposta['causa']}")
     print(f"\nOrientação: {resposta['resposta']}")
@@ -18,7 +18,7 @@ def iniciar_assistente() -> None:
     """Inicia a interface interativa do assistente."""
 
     print("=" * 50)
-    print("OpsHelper AI - Assistente Técnico")
+    print("OpsHelper - Assistente Técnico")
     print("=" * 50)
 
     print("\nDigite sua dúvida técnica.")
@@ -34,7 +34,7 @@ def iniciar_assistente() -> None:
         pergunta = input("Usuário: ").strip()
 
         if pergunta.casefold() == "sair":
-            print("\nEncerrando OpsHelper AI. Até mais!")
+            print("\nEncerrando OpsHelper. Até mais!")
             break
 
         if not pergunta:

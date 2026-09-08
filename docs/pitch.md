@@ -1,6 +1,6 @@
-# Pitch — OpsHelper AI
+# Pitch — OpsHelper
 
-O OpsHelper AI é um assistente técnico em Python criado para organizar e recuperar conhecimento de troubleshooting de infraestrutura.
+O OpsHelper é um assistente técnico em Python criado para organizar e recuperar conhecimento de troubleshooting de infraestrutura.
 
 A versão atual recebe uma dúvida, normaliza o texto, identifica termos relevantes e consulta uma base estruturada para retornar:
 
